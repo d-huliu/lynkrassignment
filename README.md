@@ -1,186 +1,188 @@
-# Lynkr Technical Assessment
+# 🌤️ Weather Data System
 
-## Overview
+> A modern, full-stack weather application built with FastAPI and Next.js featuring real-time weather data retrieval and elegant data visualization.
 
-Build a weather data system where users can submit weather requests and retrieve stored results by ID.
+## ✨ Features
 
-## Project Structure
+### 🎯 Core Functionality
+- **Weather Request Submission** - Submit weather requests for any location with date and custom notes
+- **Real-time Weather Data** - Powered by WeatherStack API with comprehensive weather metrics
+- **Data Retrieval System** - Retrieve stored weather data using unique IDs
+- **Persistent Storage** - In-memory storage system for fast data access
+
+### 🎨 Modern UI/UX
+- **Custom Dark Theme** - Sleek black design with modern typography using Jost font
+- **Responsive Design** - Optimized for desktop and mobile devices
+- **Interactive Components** - Smooth animations and micro-interactions
+- **Error Handling** - Comprehensive error states and user feedback
+
+### 📊 Weather Metrics
+- Temperature (°C), Feels Like, Humidity
+- Wind Speed & Direction, Atmospheric Pressure
+- Visibility, UV Index, Weather Descriptions
+- Location Resolution & Timestamps
+
+## 🚀 Quick Start
+
+### Prerequisites
+- **Node.js** 18+ and npm/yarn
+- **Python** 3.8+
+- **WeatherStack API Key** ([Get free key](https://weatherstack.com/))
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <your-repo-url>
+   cd weather-system
+   ```
+
+2. **Setup Backend**
+   ```bash
+   cd backend
+   python -m venv venv
+   venv\Scripts\activate  # Windows
+   pip install -r requirements.txt
+   ```
+
+3. **Setup Frontend**
+   ```bash
+   cd frontend
+   npm install
+   ```
+
+### Running the Application
+
+1. **Start Backend** (Terminal 1)
+   ```bash
+   cd backend && python main.py
+   ```
+   → Backend runs on `http://localhost:8000`
+
+2. **Start Frontend** (Terminal 2)
+   ```bash
+   cd frontend && npm run dev
+   ```
+   → Frontend runs on `http://localhost:3000`
+
+## 🏗️ Architecture
 
 ```
-├── frontend/          # Next.js frontend application
+├── backend/
+│   ├── main.py              # FastAPI application with weather endpoints
+│   └── requirements.txt     # Python dependencies
+├── frontend/
 │   ├── src/
-│   │   ├── app/       # Next.js app router pages
-│   │   └── components/ # React components
-│   └── package.json
-└── backend/           # FastAPI backend application
-    ├── main.py        # Main API application
-    └── requirements.txt
+│   │   ├── app/            # Next.js app router
+│   │   └── components/     # React components
+│   ├── package.json        # Node.js dependencies
+│   └── tailwind.config.ts  # Tailwind CSS configuration
+└── README.md
 ```
 
-## Prerequisites
+## 🔌 API Endpoints
 
-- Node.js 18+ and npm/yarn
-- Python 3.8+
-- WeatherStack API key (free at https://weatherstack.com/)
-
-## Setup Instructions
-
-### 1. Clone the Repository
-
-```bash
-git clone <your-forked-repo-url>
-cd f25-take-home-assessment
-```
-
-### 2. Backend Setup
-
-First, create and activate a Python virtual environment to keep dependencies isolated:
-
-**On macOS/Linux:**
-
-```bash
-cd backend
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
-
-**On Windows:**
-
-```bash
-cd backend
-python -m venv venv
-venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-**Note:** You'll need to activate the virtual environment each time you work on the backend
-
-### 3. Frontend Setup
-
-```bash
-cd frontend
-npm install
-# or
-yarn install
-```
-
-### 4. Get WeatherStack API Key
-
-1. Create a free account at https://weatherstack.com/
-2. Get your API key from the dashboard
-3. You'll need this for implementing the POST /weather endpoint
-
-## Running the Application
-
-### Start Backend (Terminal 1)
-
-```bash
-cd backend
-python main.py
-```
-
-Backend will run on http://localhost:8000
-
-### Start Frontend (Terminal 2)
-
-```bash
-cd frontend
-npm run dev
-# or
-yarn dev
-```
-
-Frontend will run on http://localhost:3000
-
-## What's Already Implemented
-
-### ✅ Backend Features
-
-- Basic FastAPI application with CORS configured
-- **GET /weather/{id}** endpoint that retrieves stored weather data
-- In-memory storage system
-- Sample data for testing
-- Pydantic models for request/response validation
-
-### ✅ Frontend Features
-
-- **Weather submission form** with date, location, and notes fields
-- Form validation and error handling
-- Responsive design with Tailwind CSS
-- Dark/light theme support
-
-## Your Tasks
-
-### Backend Task: Implement POST /weather endpoint
-
-**What you need to build:**
-
-- Endpoint that receives form data (date, location, notes)
-- Integration with WeatherStack API to fetch weather data
-- Store combined data with unique ID in memory
-- Return the ID to the frontend
-
-**API Endpoint:** `POST /weather`
-
-**Expected Request Body:**
-
+### POST `/weather`
+Submit a new weather request
 ```json
 {
-  "date": "2024-01-15",
+  "date": "2025-06-25",
   "location": "New York",
-  "notes": "Optional notes"
+  "notes": "Trip planning"
 }
 ```
 
-**Expected Response:**
-
+**Response:**
 ```json
 {
-  "id": "unique-weather-id"
+  "id": "uuid-string"
 }
 ```
 
-### Frontend Task: Build data lookup interface
+### GET `/weather/{id}`
+Retrieve stored weather data
+```json
+{
+  "id": "uuid-string",
+  "date": "2025-06-25",
+  "location": "New York, United States",
+  "temperature": 22,
+  "weather_description": "Partly cloudy",
+  "humidity": 65,
+  "wind_speed": 12,
+  // ... additional weather metrics
+}
+```
 
-**What you need to build:**
+## 🎨 Design System
 
-- Input field for entering weather data ID
-- Button to fetch data from backend
-- Display retrieved weather information in a nice format
-- Error handling for invalid IDs
+### Typography
+- **Primary Font**: Jost (Google Fonts)
+- **Weights**: 100-900 variable font
+- **Style**: Modern, clean sans-serif
 
-**Existing Backend Endpoint:** `GET /weather/{id}`
+### Color Scheme
+- **Background**: Deep black (#000000)
+- **Surface**: Dark grays (#111111, #1a1a1a)
+- **Accent**: Electric blue (#3b82f6)
+- **Text**: High contrast whites and grays
+- **Success**: Emerald green
+- **Error**: Coral red
 
-## Testing Your Implementation
+### Components
+- **No rounded corners** - Sharp, modern aesthetic
+- **Glassmorphism effects** - Subtle backdrop blurs
+- **Smooth animations** - 200-300ms transitions
+- **Interactive feedback** - Hover states and micro-interactions
 
-### Testing the Backend
+## 🧪 Testing
 
-1. Submit a weather request through the frontend form
-2. You should receive an ID back
-3. Use that ID to test the GET endpoint: `http://localhost:8000/weather/{id}`
+### Sample Data
+The backend includes sample weather data for testing:
+- **Sample ID**: `sample-weather-123`
+- Use this ID in the lookup interface to test functionality
 
-### Testing the Frontend
+### Manual Testing
+1. Submit a weather request through the form
+2. Copy the returned ID
+3. Use the ID in the lookup interface
+4. Verify weather data displays correctly
 
-1. Use the sample ID printed in the backend console when starting the server
-2. Enter it in your lookup interface
-3. You should see the sample weather data displayed
+## 🔧 Development
 
-## Success Criteria
+### Backend Development
+- Built with **FastAPI** for high performance
+- **Pydantic** models for data validation
+- **Requests** library for WeatherStack API integration
+- **CORS** enabled for frontend communication
 
-- Form submission returns an ID
-- ID can be used to look up and display weather data
-- Basic error handling for invalid forms/IDs
-- Clean, functional code
+### Frontend Development
+- **Next.js 15** with App Router
+- **TypeScript** for type safety
+- **Tailwind CSS** for styling
+- **Radix UI** components for accessibility
 
-## Optional Bonus Features
+## 📈 Future Enhancements
 
-- Better styling and UX improvements
-- Form validation enhancements
-- Additional weather data fields
-- Loading states and better error messages
-- Data persistence improvements
+- [ ] **Database Integration** - PostgreSQL or MongoDB for persistent storage
+- [ ] **User Authentication** - User accounts and request history
+- [ ] **Weather Forecasts** - Multi-day weather predictions
+- [ ] **Location Autocomplete** - Enhanced location search
+- [ ] **Data Export** - CSV/JSON export functionality
+- [ ] **Real-time Updates** - WebSocket connections for live data
 
-## Submission
+## 🤝 Contributing
 
-Push your completed code to your forked repository and submit the public GitHub URL.
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit changes: `git commit -m 'Add amazing feature'`
+4. Push to branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
+
+## 📝 License
+
+This project is part of the Lynkr Technical Assessment.
+
+---
+
+**Built with ❤️ using FastAPI, Next.js, and WeatherStack API**
